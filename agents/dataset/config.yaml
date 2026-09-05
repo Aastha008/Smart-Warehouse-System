@@ -1,0 +1,39 @@
+# Agent 3: Computer Vision Dataset Configuration
+name: cv_dataset
+role: Computer Vision Dataset Agent
+description: >
+  Creates annotations/classes for warehouse scenarios,
+  supports object and behaviour classes.
+
+behaviour_classes:
+  - product_drop
+  - product_dragging
+  - product_throwing
+  - rough_handling
+  - improper_stacking
+  - unstable_stacking
+  - product_outside_zone
+  - incorrect_pallet_position
+  - unsafe_loading_sequence
+  - improper_handling_equipment
+
+object_classes:
+  - person
+  - carton
+  - package
+  - pallet
+  - trolley
+  - forklift
+  - vehicle
+
+labeling_strategy:
+  primary: pretrained_detection
+  secondary: semi_automatic_labeling
+  fallback: synthetic_data
+
+constraints:
+  - Document dataset limitations
+  - Track annotation quality
+  - Support YOLO format annotations
+
+status: active

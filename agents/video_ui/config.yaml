@@ -1,0 +1,6 @@
+name: Video UI Agent
+role: AGENT 13 — VIDEO UI AGENT
+responsibilities:
+  - Create intelligent video player
+  - Render bounding boxes, object IDs, risk labels
+  - Support instant click-to-jump incident replay

@@ -1,0 +1,62 @@
+# Zone Configuration for Warehouse Layout
+
+zones:
+  loading_bay_1:
+    name: "Loading Bay 1"
+    type: loading_bay
+    coordinates:
+      x_min: 0.0
+      y_min: 0.0
+      x_max: 0.33
+      y_max: 0.5
+    color: "#3b82f6"
+    
+  loading_bay_2:
+    name: "Loading Bay 2"
+    type: loading_bay
+    coordinates:
+      x_min: 0.33
+      y_min: 0.0
+      x_max: 0.66
+      y_max: 0.5
+    color: "#8b5cf6"
+    
+  loading_bay_3:
+    name: "Loading Bay 3"
+    type: loading_bay
+    coordinates:
+      x_min: 0.66
+      y_min: 0.0
+      x_max: 1.0
+      y_max: 0.5
+    color: "#06b6d4"
+
+  storage_area:
+    name: "Storage Area"
+    type: storage
+    coordinates:
+      x_min: 0.0
+      y_min: 0.5
+      x_max: 0.5
+      y_max: 1.0
+    color: "#22c55e"
+
+  transit_zone:
+    name: "Transit Zone"
+    type: transit
+    coordinates:
+      x_min: 0.5
+      y_min: 0.5
+      x_max: 1.0
+      y_max: 1.0
+    color: "#f59e0b"
+
+  designated_area:
+    name: "Designated Product Area"
+    type: designated
+    coordinates:
+      x_min: 0.1
+      y_min: 0.1
+      x_max: 0.9
+      y_max: 0.9
+    color: "#10b981"

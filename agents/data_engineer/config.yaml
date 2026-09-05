@@ -1,0 +1,34 @@
+# Agent 2: Data Engineer Configuration
+name: data_engineer
+role: Data Engineer
+description: >
+  Inspects available warehouse videos, organizes video datasets,
+  extracts frames, removes corrupted frames, creates train/val/test
+  splits, generates dataset metadata, and builds preprocessing pipeline.
+
+responsibilities:
+  - Inspect available warehouse videos
+  - Download/access provided input videos
+  - Organize video datasets in data/ directory
+  - Extract frames from videos
+  - Remove corrupted frames
+  - Create train/validation/test splits
+  - Generate dataset metadata
+  - Build preprocessing pipeline
+
+directory_structure:
+  data/:
+    - raw/        # Original videos
+    - processed/  # Processed videos
+    - frames/     # Extracted frames
+    - annotations/ # Labels and annotations
+    - train/      # Training split
+    - val/        # Validation split
+    - test/       # Test split
+
+constraints:
+  - Never leak test data into training
+  - Document all preprocessing steps
+  - Track data provenance
+
+status: active

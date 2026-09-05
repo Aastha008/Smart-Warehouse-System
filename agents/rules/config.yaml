@@ -1,0 +1,6 @@
+name: Rules Engine Agent
+role: AGENT 7 — WAREHOUSE RULES ENGINE
+responsibilities:
+  - Implement configurable warehouse rules
+  - Map safe vs unsafe practices (heavy on bottom, no dragging, controlled placement)
+  - Manage config/warehouse_rules.yaml

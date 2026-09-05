@@ -1,0 +1,35 @@
+# Backend Dependencies
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+sqlalchemy==2.0.36
+alembic==1.14.0
+pydantic==2.10.3
+pydantic-settings==2.7.0
+python-multipart==0.0.19
+python-dotenv==1.0.1
+aiofiles==24.1.0
+httpx==0.28.1
+
+# Computer Vision
+ultralytics==8.3.50
+opencv-python-headless==4.10.0.84
+numpy>=1.26.0,<2.0
+Pillow==11.0.0
+scipy==1.14.1
+lap==0.5.12
+
+# Data Processing
+pyyaml==6.0.2
+pandas==2.2.3
+
+# AI Assistant
+openai==1.58.1
+
+# Testing
+pytest==8.3.4
+pytest-asyncio==0.25.0
+httpx==0.28.1
+
+# Utilities
+loguru==0.7.3
+tqdm==4.67.1

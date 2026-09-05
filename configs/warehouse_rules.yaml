@@ -1,0 +1,86 @@
+# Warehouse Handling Rules Configuration
+
+rules:
+  stacking:
+    - id: STACK_001
+      description: "Heavy products must be placed at the bottom of stacks"
+      bad_practice: "Heavy product on top of light product"
+      good_practice: "Heavy products at bottom, light products on top"
+      severity: HIGH
+      
+    - id: STACK_002
+      description: "Products must not extend beyond pallet edges"
+      bad_practice: "Product extends beyond pallet boundary"
+      good_practice: "Full product support within pallet boundary"
+      severity: MEDIUM
+      
+    - id: STACK_003
+      description: "Stack height must not exceed safe limits"
+      bad_practice: "Stack exceeds maximum safe height"
+      good_practice: "Stack within configured height limit"
+      severity: HIGH
+
+  handling:
+    - id: HANDLE_001
+      description: "Products must be lifted, not dragged"
+      bad_practice: "Product dragged on floor"
+      good_practice: "Use trolley or pallet truck for movement"
+      severity: MEDIUM
+      
+    - id: HANDLE_002
+      description: "Products must be placed, not dropped or thrown"
+      bad_practice: "Product thrown or dropped"
+      good_practice: "Controlled placement of product"
+      severity: HIGH
+      
+    - id: HANDLE_003
+      description: "Appropriate handling equipment must be used for heavy items"
+      bad_practice: "Heavy item moved without equipment"
+      good_practice: "Use forklift, trolley, or pallet jack"
+      severity: MEDIUM
+      
+    - id: HANDLE_004
+      description: "Products must be handled with care, avoiding rough movements"
+      bad_practice: "Rapid jerky movements with product"
+      good_practice: "Smooth controlled product movement"
+      severity: MEDIUM
+
+  placement:
+    - id: PLACE_001
+      description: "Products must be placed within designated zones"
+      bad_practice: "Product outside designated area"
+      good_practice: "Product inside designated zone"
+      severity: LOW
+      
+    - id: PLACE_002
+      description: "Pallets must be correctly positioned"
+      bad_practice: "Pallet misaligned or incorrectly positioned"
+      good_practice: "Pallet aligned with marked position"
+      severity: MEDIUM
+
+  loading:
+    - id: LOAD_001
+      description: "Loading sequence must follow safety protocol"
+      bad_practice: "Unsafe or chaotic loading sequence"
+      good_practice: "Systematic loading following protocol"
+      severity: HIGH
+      
+    - id: LOAD_002
+      description: "Adequate clearance must be maintained during loading"
+      bad_practice: "Items too close together during movement"
+      good_practice: "Safe clearance between items"
+      severity: MEDIUM
+
+# Recommendations for each rule violation
+recommendations:
+  STACK_001: "Rearrange stack with heavy items at base. Review stacking training."
+  STACK_002: "Reposition products within pallet boundary. Check pallet sizing."
+  STACK_003: "Reduce stack height. Consider additional pallets."
+  HANDLE_001: "Use appropriate transport equipment. Schedule handling refresher."
+  HANDLE_002: "Inspect potentially damaged product. Review placement procedures."
+  HANDLE_003: "Provide appropriate equipment. Review lifting guidelines."
+  HANDLE_004: "Review handling technique with operator. Check for time pressure."
+  PLACE_001: "Move product to designated zone. Review zone markings."
+  PLACE_002: "Realign pallet to correct position. Check floor markings."
+  LOAD_001: "Pause loading and review sequence. Ensure supervisor oversight."
+  LOAD_002: "Increase spacing between items. Review safe distances."

@@ -1,0 +1,23 @@
+# Agent 1: Project Manager Configuration
+name: project_manager
+role: Project Manager
+description: >
+  Understands challenge requirements, breaks project into milestones,
+  tracks implementation progress, detects blockers, and ensures all
+  required features are completed.
+
+responsibilities:
+  - Understand challenge requirements from the source document
+  - Break project into milestones and tasks
+  - Track implementation progress
+  - Detect and resolve blockers
+  - Ensure all required features are completed
+  - Maintain PROJECT_STATUS.md
+
+outputs:
+  - project_roadmap.md
+  - milestones.md
+  - task_tracking.md
+  - completion_status.md
+
+status: active

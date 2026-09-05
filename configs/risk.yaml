@@ -1,0 +1,88 @@
+# Risk Scoring Configuration
+
+# Risk levels
+levels:
+  LOW:
+    min_score: 0
+    max_score: 30
+    color: "#22c55e"      # green
+    icon: "🟢"
+    action: "log"
+  MEDIUM:
+    min_score: 31
+    max_score: 60
+    color: "#f59e0b"      # amber
+    icon: "🟡"
+    action: "notify"
+  HIGH:
+    min_score: 61
+    max_score: 85
+    color: "#f97316"      # orange
+    icon: "🟠"
+    action: "alert"
+  CRITICAL:
+    min_score: 86
+    max_score: 100
+    color: "#ef4444"      # red
+    icon: "🔴"
+    action: "intervene"
+
+# Base risk scores by behaviour type
+base_scores:
+  product_drop: 70
+  product_throwing: 85
+  product_dragging: 50
+  rough_handling: 65
+  improper_stacking: 60
+  unstable_stacking: 75
+  product_outside_zone: 40
+  incorrect_pallet_position: 55
+  unsafe_loading_sequence: 70
+  improper_handling_equipment: 45
+
+# Risk modifiers (additive)
+modifiers:
+  drop_height:
+    low: 0          # < 0.5m
+    medium: 10      # 0.5-1.0m
+    high: 20        # > 1.0m
+  
+  velocity:
+    low: 0          # normal speed
+    medium: 5       # moderate
+    high: 15        # high velocity
+  
+  product_type:
+    fragile: 15
+    heavy: 10
+    standard: 0
+    lightweight: -5
+  
+  repeat_offence:
+    first: 0
+    second: 10
+    third_plus: 20
+  
+  location:
+    loading_bay: 5
+    storage_area: 0
+    transit_zone: 3
+  
+  duration:
+    brief: 0        # < 5 seconds
+    moderate: 5     # 5-15 seconds
+    extended: 15    # > 15 seconds
+
+# Maximum total score cap
+max_score: 100
+
+# Alert thresholds
+alerts:
+  dashboard_notification: 31    # MEDIUM and above
+  browser_notification: 61      # HIGH and above
+  sound_alert: 61               # HIGH and above
+  email_notification: 86        # CRITICAL only
+  webhook_notification: 86      # CRITICAL only
+
+# Cooldown period (seconds) between duplicate alerts for same object
+alert_cooldown: 30

@@ -1,0 +1,84 @@
+# Behaviour Detection Configuration
+
+# Temporal analysis parameters
+temporal:
+  history_frames: 30       # Number of frames to keep in history
+  min_track_length: 5      # Minimum track length for behaviour analysis
+  state_timeout: 60        # Seconds before state machine resets
+
+# Behaviour-specific thresholds
+behaviours:
+  product_drop:
+    enabled: true
+    min_fall_velocity: 2.0          # pixels/frame vertical velocity
+    min_fall_distance: 50           # pixels minimum fall distance
+    max_stationary_velocity: 1.0    # velocity to consider stationary
+    stationary_frames: 5            # frames object must be stationary after fall
+    min_confidence: 0.6
+
+  product_dragging:
+    enabled: true
+    max_lift_height: 15             # pixels - max height to consider dragging
+    min_drag_distance: 80           # pixels minimum horizontal movement
+    min_drag_frames: 10             # minimum frames of dragging
+    min_confidence: 0.6
+
+  product_throwing:
+    enabled: true
+    min_release_velocity: 5.0       # pixels/frame at release
+    min_air_time: 5                 # minimum frames airborne
+    high_arc_threshold: 30          # pixels vertical displacement for arc
+    min_confidence: 0.65
+
+  rough_handling:
+    enabled: true
+    acceleration_threshold: 3.0     # pixels/frame^2
+    direction_change_threshold: 45  # degrees - rapid direction changes
+    min_jerky_movements: 3          # number of rapid direction changes
+    analysis_window: 15             # frames to analyze
+    min_confidence: 0.55
+
+  improper_stacking:
+    enabled: true
+    heavy_on_light_ratio: 1.3       # size ratio indicating heavy on light
+    max_overhang: 0.2               # fraction of item extending beyond support
+    min_stack_height: 2             # minimum items for stacking analysis
+    min_confidence: 0.6
+
+  unstable_stacking:
+    enabled: true
+    tilt_angle_threshold: 10        # degrees from vertical
+    oscillation_threshold: 5        # pixels of movement in stacked items
+    oscillation_frames: 10          # frames to detect oscillation
+    min_confidence: 0.6
+
+  product_outside_zone:
+    enabled: true
+    zone_margin: 0.05               # margin around designated zones
+    min_outside_frames: 15          # frames outside zone before alert
+    min_confidence: 0.7
+
+  incorrect_pallet_position:
+    enabled: true
+    pallet_alignment_threshold: 15  # pixels offset from expected position
+    overhang_threshold: 0.15        # fraction of product extending beyond pallet
+    min_confidence: 0.6
+
+  unsafe_loading_sequence:
+    enabled: true
+    max_simultaneous_loads: 3       # max items being moved at once
+    min_clearance: 30               # pixels minimum clearance between items
+    sequence_window: 90             # frames for sequence analysis
+    min_confidence: 0.55
+
+  improper_handling_equipment:
+    enabled: true
+    min_product_size_for_equipment: 150  # pixel size requiring equipment
+    equipment_proximity_threshold: 100   # pixels - max distance to equipment
+    min_confidence: 0.55
+
+# Person-product interaction detection
+interaction:
+  proximity_threshold: 80           # pixels distance for interaction
+  overlap_threshold: 0.3            # IoU overlap for interaction
+  min_interaction_frames: 3         # minimum frames for interaction

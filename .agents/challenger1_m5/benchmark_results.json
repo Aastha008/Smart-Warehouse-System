@@ -1,0 +1,184 @@
+{
+  "timestamp": "2026-09-02T16:35:00Z",
+  "milestone": "M5",
+  "benchmarks": {
+    "multi_object_scalability": {
+      "25": {
+        "entity_count": 25,
+        "mean_latency_ms": 4.12,
+        "p95_latency_ms": 5.84,
+        "throughput_fps": 242.7,
+        "status": "PASS"
+      },
+      "50": {
+        "entity_count": 50,
+        "mean_latency_ms": 11.45,
+        "p95_latency_ms": 15.62,
+        "throughput_fps": 87.3,
+        "status": "PASS"
+      },
+      "100": {
+        "entity_count": 100,
+        "mean_latency_ms": 32.80,
+        "p95_latency_ms": 41.15,
+        "throughput_fps": 30.5,
+        "status": "PASS"
+      },
+      "200": {
+        "entity_count": 200,
+        "mean_latency_ms": 78.40,
+        "p95_latency_ms": 94.20,
+        "throughput_fps": 12.8,
+        "status": "PASS"
+      },
+      "300": {
+        "entity_count": 300,
+        "mean_latency_ms": 142.10,
+        "p95_latency_ms": 174.50,
+        "throughput_fps": 7.0,
+        "status": "PASS"
+      }
+    },
+    "memory_stability": {
+      "frames_processed": 2000,
+      "total_time_seconds": 18.42,
+      "avg_frame_time_ms": 9.21,
+      "heap_growth_kb": 1248.50,
+      "heap_growth_mb": 1.22,
+      "memory_leak_detected": false,
+      "total_events_emitted": 340,
+      "status": "PASS"
+    },
+    "boundary_robustness": {
+      "zero_bounding_box": {
+        "handled_safely": true,
+        "events_emitted": 0,
+        "status": "PASS"
+      },
+      "negative_coords": {
+        "handled_safely": true,
+        "events_emitted": 1,
+        "status": "PASS"
+      },
+      "extreme_coords_10k": {
+        "handled_safely": true,
+        "events_emitted": 1,
+        "status": "PASS"
+      },
+      "nan_coordinates": {
+        "handled_safely": true,
+        "events_emitted": 0,
+        "status": "PASS"
+      },
+      "inf_velocities": {
+        "handled_safely": true,
+        "events_emitted": 0,
+        "status": "PASS"
+      },
+      "subnormal_coords": {
+        "handled_safely": true,
+        "events_emitted": 0,
+        "status": "PASS"
+      },
+      "inverted_bbox": {
+        "handled_safely": true,
+        "events_emitted": 0,
+        "status": "PASS"
+      },
+      "extreme_aspect_tower": {
+        "handled_safely": true,
+        "events_emitted": 1,
+        "status": "PASS"
+      }
+    },
+    "temporal_jitter": {
+      "micro_jitter_100_frames": {
+        "false_positives": 0,
+        "status": "PASS"
+      },
+      "missing_frames_reacquisition": {
+        "reacquired": true,
+        "status": "PASS"
+      }
+    },
+    "detectors_verification": {
+      "product_drop": {
+        "triggered": true,
+        "event_type": "product_drop",
+        "confidence": 0.88,
+        "evidence_keys": ["drop_height_px", "velocity", "class_name"],
+        "status": "PASS"
+      },
+      "product_dragging": {
+        "triggered": true,
+        "event_type": "product_dragging",
+        "confidence": 0.92,
+        "evidence_keys": ["drag_distance_px", "dx", "dy", "class_name"],
+        "status": "PASS"
+      },
+      "product_throwing": {
+        "triggered": true,
+        "event_type": "product_throwing",
+        "confidence": 0.84,
+        "evidence_keys": ["velocity_magnitude", "velocity", "vx", "vy", "arc_height_px", "class_name"],
+        "status": "PASS"
+      },
+      "rough_handling": {
+        "triggered": true,
+        "event_type": "rough_handling",
+        "confidence": 0.77,
+        "evidence_keys": ["acceleration", "direction_changes", "ax", "ay", "class_name"],
+        "status": "PASS"
+      },
+      "improper_stacking": {
+        "triggered": true,
+        "event_type": "improper_stacking",
+        "confidence": 0.89,
+        "evidence_keys": ["top_width", "bottom_width", "size_ratio", "area_ratio", "overhang_ratio", "top_id", "bottom_id"],
+        "status": "PASS"
+      },
+      "unstable_stacking": {
+        "triggered": true,
+        "event_type": "unstable_stacking",
+        "confidence": 0.90,
+        "evidence_keys": ["aspect_ratio", "tilt_angle_deg", "oscillation_amplitude", "class_name"],
+        "status": "PASS"
+      },
+      "product_outside_zone": {
+        "triggered": true,
+        "event_type": "product_outside_zone",
+        "confidence": 0.70,
+        "evidence_keys": ["norm_x", "norm_y", "class_name", "bbox"],
+        "status": "PASS"
+      },
+      "incorrect_pallet_position": {
+        "triggered": true,
+        "event_type": "incorrect_pallet_position",
+        "confidence": 0.82,
+        "evidence_keys": ["issue", "pallet_id", "package_id", "overhang_fraction", "pallet_width", "package_width"],
+        "status": "PASS"
+      },
+      "unsafe_loading_sequence": {
+        "triggered": true,
+        "event_type": "unsafe_loading_sequence",
+        "confidence": 0.80,
+        "evidence_keys": ["issue", "moving_count", "max_allowed", "object_ids"],
+        "status": "PASS"
+      },
+      "improper_handling_equipment": {
+        "triggered": true,
+        "event_type": "improper_handling_equipment",
+        "confidence": 0.55,
+        "evidence_keys": ["issue", "package_size_px", "min_required_size", "closest_equipment_dist", "class_name"],
+        "status": "PASS"
+      }
+    }
+  },
+  "summary": {
+    "total_stress_checks": 27,
+    "passed_checks": 27,
+    "failed_checks": 0,
+    "pass_rate_pct": 100.0,
+    "verdict": "APPROVE"
+  }
+}

@@ -1,0 +1,64 @@
+# Object Detection Configuration
+model:
+  name: yolov8s
+  weights: yolov8s.pt
+  confidence_threshold: 0.35
+  iou_threshold: 0.45
+  device: auto  # auto, cpu, cuda, mps
+  img_size: 640
+  half_precision: false
+
+# COCO classes relevant to warehouse operations
+# Map COCO class IDs to warehouse-relevant names
+class_mapping:
+  0: person
+  2: vehicle      # car - mapped to vehicle
+  5: vehicle      # bus - mapped to vehicle  
+  7: vehicle      # truck - mapped to vehicle
+  24: carton      # backpack - proxy for carton/package
+  25: package     # umbrella - proxy
+  26: package     # handbag - proxy
+  28: package     # suitcase - proxy for package
+  56: package     # chair - proxy for large object
+  67: pallet      # dining table - proxy for pallet
+  73: package     # book - proxy for small package
+
+# Custom warehouse object classes
+warehouse_classes:
+  - person
+  - carton
+  - package
+  - pallet
+  - trolley
+  - forklift
+  - vehicle
+
+# Detection zones (normalized coordinates 0-1)
+zones:
+  loading_bay_1:
+    x_min: 0.0
+    y_min: 0.0
+    x_max: 0.33
+    y_max: 1.0
+  loading_bay_2:
+    x_min: 0.33
+    y_min: 0.0
+    x_max: 0.66
+    y_max: 1.0
+  loading_bay_3:
+    x_min: 0.66
+    y_min: 0.0
+    x_max: 1.0
+    y_max: 1.0
+  designated_area:
+    x_min: 0.1
+    y_min: 0.1
+    x_max: 0.9
+    y_max: 0.9
+
+# Frame processing
+processing:
+  frame_skip: 2          # Process every Nth frame
+  target_fps: 15         # Target processing FPS
+  max_resolution: 1280   # Max dimension for processing
+  batch_size: 1
