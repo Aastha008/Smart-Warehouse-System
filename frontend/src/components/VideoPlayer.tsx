@@ -817,7 +817,7 @@ export default function VideoPlayer({
   return (
     <div
       ref={containerRef}
-      className={`relative bg-slate-950 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col group select-none ${className}`}
+      className={`relative bg-slate-950 rounded-lg overflow-hidden shadow-2xl border border-slate-800 flex flex-col group select-none ${className}`}
       style={{ aspectRatio: '16/9' }}
     >
       {/* HTML5 Video element if valid video URL provided */}

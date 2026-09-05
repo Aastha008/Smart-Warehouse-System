@@ -92,12 +92,12 @@ export default function Analytics() {
   }
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-8 w-full">
       {/* Top Header & Range Controls */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Shift Safety Trends & Reports</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Shift Safety Trends & Reports</h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Tracking handling issues across shifts, peak dock hours, and safety improvements across all bays.
           </p>
         </div>
@@ -108,10 +108,10 @@ export default function Analytics() {
             <button
               key={range}
               onClick={() => setTimeRange(range)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
                 timeRange === range
                   ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                  : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50'
               }`}
             >
               {range === '7d' ? 'Past 7 Days' : range === '30d' ? 'Past 30 Days' : 'Quarter to Date'}
@@ -123,7 +123,7 @@ export default function Analytics() {
       {/* Grid Row 1: Shift Distribution & Pareto Chart */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 1. Incident Distribution by Shift */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all p-6">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
             <div>
               <h2 className="text-sm font-bold text-slate-900">Handling Issues by Work Shift</h2>
@@ -161,13 +161,13 @@ export default function Analytics() {
         </div>
 
         {/* 2. Pareto Chart of Warehouse Behavior Types (80/20 Rule) */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all p-6">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <h2 className="text-sm font-bold text-slate-900">Pareto Behavior Distribution</h2>
-              <p className="text-xs text-slate-500">Incident frequency vs. cumulative percentage curve</p>
+              <h2 className="text-sm font-bold text-slate-900 dark:text-white">Pareto Analysis of Violations</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">80/20 Rule: Key drivers behind handling flags</p>
             </div>
-            <span className="text-xs font-mono text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">80/20 Rule</span>
+            <span className="text-xs font-mono text-amber-700 font-bold bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-800">Pareto (80%)</span>
           </div>
 
           <div className="h-64 w-full">
@@ -181,19 +181,19 @@ export default function Analytics() {
                   contentStyle={{
                     backgroundColor: '#0f172a',
                     borderColor: '#334155',
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                     fontSize: '12px',
                     color: '#fff',
                   }}
                 />
-                <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
-                <Bar yAxisId="left" dataKey="count" name="Event Count" fill="#3b82f6" radius={[6, 6, 0, 0]} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{ fontSize: '11px', paddingBottom: '8px' }} />
+                <Bar yAxisId="left" dataKey="count" name="Event Count" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                 <Line yAxisId="right" type="monotone" dataKey="cumulativePct" name="Cumulative %" stroke="#d97706" strokeWidth={2.5} dot={{ r: 4 }} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
-          <p className="text-[11px] text-slate-500 mt-3 font-medium">
-            Insight: The top 3 behaviors (<strong className="text-slate-900">Product Drop, Dragging, Unstable Stacking</strong>) account for 55% of all safety violations.
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-3 font-medium">
+            Insight: The top 3 behaviors (<strong className="text-slate-900 dark:text-white">Product Drop, Dragging, Unstable Stacking</strong>) account for 55% of all safety violations.
           </p>
         </div>
       </div>
@@ -201,13 +201,13 @@ export default function Analytics() {
       {/* Grid Row 2: Risk Score Histogram & 24-Hour Time Distribution */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 3. Risk Score Histogram */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all p-6">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <h2 className="text-sm font-bold text-slate-900">Risk Score Distribution Histogram</h2>
-              <p className="text-xs text-slate-500">Events grouped by composite multi-factor risk score (0-100)</p>
+              <h2 className="text-sm font-bold text-slate-900 dark:text-white">Risk Score Distribution Histogram</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Events grouped by composite multi-factor risk score (0-100)</p>
             </div>
-            <span className="text-xs font-mono text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">428 Events</span>
+            <span className="text-xs font-mono text-emerald-700 font-bold bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800">428 Events</span>
           </div>
 
           <div className="h-64 w-full">
@@ -220,12 +220,12 @@ export default function Analytics() {
                   contentStyle={{
                     backgroundColor: '#0f172a',
                     borderColor: '#334155',
-                    borderRadius: '12px',
+                    borderRadius: '8px',
                     fontSize: '12px',
                     color: '#fff',
                   }}
                 />
-                <Bar dataKey="count" name="Events Count" radius={[6, 6, 0, 0]}>
+                <Bar dataKey="count" name="Events Count" radius={[4, 4, 0, 0]}>
                   {histogramData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
@@ -233,13 +233,13 @@ export default function Analytics() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <p className="text-[11px] text-slate-500 mt-3 font-medium">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-3 font-medium">
             Distribution: 65% of recorded behaviors remain in the <strong className="text-emerald-600 font-bold">Low-to-Medium</strong> bracket (0-50).
           </p>
         </div>
 
         {/* 4. 24-Hour Time-of-Day Curve */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all p-6">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
             <div>
               <h2 className="text-sm font-bold text-slate-900">24-Hour Hourly Diurnal Pattern</h2>

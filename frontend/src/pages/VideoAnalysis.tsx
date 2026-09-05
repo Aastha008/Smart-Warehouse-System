@@ -634,19 +634,19 @@ export default function VideoAnalysis() {
   const evidence = (typeof selectedEvent?.evidence === 'object' ? selectedEvent.evidence : {}) as Record<string, any>;
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
+    <div className="space-y-6 w-full">
       {/* Top Header & Scenario Preset Selector */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Video Replay & Incident Review</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Video Replay & Incident Review</h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Review recorded bay camera footage, inspect flagged handling events, and jump directly to incident moments.
           </p>
         </div>
 
         {/* Upload Button */}
         <div className="flex items-center gap-3">
-          <label className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition-all flex items-center gap-2 cursor-pointer active:scale-95">
+          <label className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition-all flex items-center gap-2 cursor-pointer active:scale-95">
             <UploadCloud className="w-4 h-4" />
             <span>Upload Bay Video</span>
             <input
@@ -660,14 +660,14 @@ export default function VideoAnalysis() {
       </div>
 
       {/* Persistent Video Database Shelf */}
-      <div className="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-3.5 space-y-2.5">
+      <div className="bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/90 dark:border-slate-800 rounded-xl p-3.5 space-y-2.5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Database className="w-4 h-4 text-blue-600" />
-            <span className="text-xs font-bold text-slate-800 uppercase tracking-wide">
+            <Database className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
               Persistent Video Database (Saved in DB)
             </span>
-            <span className="text-[10px] font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded-md">
               {uploadedVideos.length} Saved Footage
             </span>
           </div>
@@ -760,10 +760,10 @@ export default function VideoAnalysis() {
           <button
             key={scen.id}
             onClick={() => handleScenarioChange(scen)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
               selectedScenario.id === scen.id && !selectedScenario.video_url
                 ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900 shadow-2xs'
+                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 shadow-2xs'
             }`}
           >
             {scen.location}: {scen.title.split(':')[1] || scen.title}
@@ -773,17 +773,17 @@ export default function VideoAnalysis() {
 
       {/* Upload Progress Bar if active */}
       {isUploading && (
-        <div className="bg-white border border-blue-200 rounded-3xl p-4 shadow-xs animate-pulse">
-          <div className="flex justify-between text-xs font-bold text-slate-900 mb-2">
+        <div className="bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-900 rounded-xl p-4 shadow-xs animate-pulse">
+          <div className="flex justify-between text-xs font-bold text-slate-900 dark:text-white mb-2">
             <span className="flex items-center gap-2">
               <UploadCloud className="w-4 h-4 text-blue-600 animate-bounce" />
               Scanning dock video for handling issues...
             </span>
             <span className="font-mono text-blue-600">{uploadProgress}%</span>
           </div>
-          <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-md h-2 overflow-hidden">
             <div
-              className="bg-blue-600 h-full rounded-full transition-all duration-300"
+              className="bg-blue-600 h-full rounded-md transition-all duration-300"
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
@@ -795,18 +795,18 @@ export default function VideoAnalysis() {
         {/* Left 2 Columns: Synchronized Video Player & Evidence Inspector */}
         <div className="lg:col-span-2 space-y-6">
           {/* Synchronized Canvas Video Player */}
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xs overflow-hidden p-3">
-            <div className="px-3 py-2 flex items-center justify-between text-xs border-b border-slate-100 mb-3">
-              <div className="flex items-center gap-2 font-mono text-slate-800 font-semibold">
-                <FileVideo className="w-4 h-4 text-blue-600" />
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs overflow-hidden p-3">
+            <div className="px-3 py-2 flex items-center justify-between text-xs border-b border-slate-100 dark:border-slate-800 mb-3">
+              <div className="flex items-center gap-2 font-mono text-slate-800 dark:text-slate-200 font-semibold">
+                <FileVideo className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                 <span>{selectedScenario.title}</span>
               </div>
               {selectedScenario.video_url ? (
-                <span className="flex items-center gap-1 text-blue-600 font-bold text-[11px] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
-                  <Play className="w-3.5 h-3.5 fill-blue-600" /> Live CCTV Footage Loaded
+                <span className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-bold text-[11px] bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded-md border border-blue-200 dark:border-blue-800">
+                  <Play className="w-3.5 h-3.5 fill-blue-600 dark:fill-blue-400" /> Live CCTV Footage Loaded
                 </span>
               ) : (
-                <span className="flex items-center gap-1 text-emerald-600 font-bold text-[11px] bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold text-[11px] bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800">
                   <CheckCircle2 className="w-3.5 h-3.5" /> Video Ready
                 </span>
               )}
@@ -825,28 +825,28 @@ export default function VideoAnalysis() {
 
           {/* Selected Incident Deep Evidence & Explainability Card */}
           {selectedEvent && (
-            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs space-y-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2">
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 p-6 shadow-xs space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 gap-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-blue-400">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-base font-bold text-slate-900">
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white">
                         {(selectedEvent.type || selectedEvent.event_type || '').replace(/_/g, ' ').toUpperCase()}
                       </h3>
                       <RiskBadge level={selectedEvent.riskLevel} />
                     </div>
-                    <p className="text-xs text-slate-500 font-mono mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
                       Timestamp: {formatTime(selectedEvent.video_start ?? 0)} • {selectedEvent.location} • Confidence: {Math.round(selectedEvent.confidence * 100)}%
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-500 font-mono">
-                    Score: <strong className="text-slate-900 font-bold">{selectedEvent.risk_score ?? 85}/100</strong>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                    Score: <strong className="text-slate-900 dark:text-white font-bold">{selectedEvent.risk_score ?? 85}/100</strong>
                   </span>
                 </div>
               </div>
@@ -859,69 +859,69 @@ export default function VideoAnalysis() {
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {evidence.drop_height_m !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Drop Height</span>
                       <span className="text-base font-black text-rose-600 font-mono">{evidence.drop_height_m} m</span>
                     </div>
                   )}
                   {evidence.impact_velocity_mps !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Impact Velocity</span>
                       <span className="text-base font-black text-orange-600 font-mono">{evidence.impact_velocity_mps} m/s</span>
                     </div>
                   )}
                   {evidence.tilt_angle_deg !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Stack Tilt</span>
                       <span className="text-base font-black text-amber-600 font-mono">{evidence.tilt_angle_deg}°</span>
                     </div>
                   )}
                   {evidence.duration_s !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Duration</span>
-                      <span className="text-base font-black text-slate-800 font-mono">{evidence.duration_s} s</span>
+                      <span className="text-base font-black text-slate-800 dark:text-slate-200 font-mono">{evidence.duration_s} s</span>
                     </div>
                   )}
                   {evidence.equipment_type && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Equipment</span>
-                      <span className="text-xs font-bold text-slate-800 truncate block">{evidence.equipment_type}</span>
+                      <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">{evidence.equipment_type}</span>
                     </div>
                   )}
                   {evidence.zone_name && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Zone Area</span>
-                      <span className="text-xs font-bold text-slate-800 truncate block">{evidence.zone_name}</span>
+                      <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">{evidence.zone_name}</span>
                     </div>
                   )}
-                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                  <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                     <span className="text-[10px] text-slate-500 uppercase font-bold block">Objects Tracked</span>
-                    <span className="text-xs font-bold text-slate-800 truncate block">
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
                       {selectedEvent.object_ids?.join(', ') || 'carton_412'}
                     </span>
                   </div>
-                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                  <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                     <span className="text-[10px] text-slate-500 uppercase font-bold block">Damage Status</span>
-                    <span className="text-xs font-bold text-emerald-600">Potential Risk</span>
+                    <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">Potential Risk</span>
                   </div>
                 </div>
               </div>
 
               {/* Prevention Explanation & Recommendation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-1">
-                  <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block">
+                <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-lg border border-slate-200 dark:border-slate-700 space-y-1">
+                  <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider block">
                     Observed Behavior Analysis
                   </span>
-                  <p className="text-xs text-slate-700 leading-relaxed">
+                  <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                     {selectedEvent.explanation || selectedEvent.description}
                   </p>
                 </div>
-                <div className="bg-blue-50/70 p-4 rounded-2xl border border-blue-200/80 space-y-1">
-                  <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wider block">
+                <div className="bg-blue-50/70 dark:bg-blue-950/40 p-4 rounded-lg border border-blue-200/80 dark:border-blue-800 space-y-1">
+                  <span className="text-[11px] font-bold text-blue-700 dark:text-blue-300 uppercase tracking-wider block">
                     Actionable Prevention Recommendation
                   </span>
-                  <p className="text-xs text-slate-700 leading-relaxed">
+                  <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                     {selectedEvent.recommendation || 'Mandate ergonomic lifting protocol and verify container integrity.'}
                   </p>
                 </div>
@@ -932,13 +932,13 @@ export default function VideoAnalysis() {
 
         {/* Right Column: Interactive Incident List Sidebar */}
         <div className="space-y-6">
-          <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs flex flex-col h-full">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 p-6 shadow-xs flex flex-col h-full">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
               <div>
-                <h3 className="text-sm font-bold text-slate-900">Detected Incidents</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Click any incident to jump to timestamp</p>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">Detected Incidents</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Click any incident to jump to timestamp</p>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-mono text-xs font-bold">
+              <span className="px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 font-mono text-xs font-bold">
                 {selectedScenario.events.length} flagged
               </span>
             </div>
@@ -953,10 +953,10 @@ export default function VideoAnalysis() {
                   <div
                     key={evt.id}
                     onClick={() => handleSelectIncident(evt)}
-                    className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col gap-2 ${
+                    className={`p-3.5 rounded-lg border transition-all cursor-pointer flex flex-col gap-2 ${
                       isSelected
-                        ? 'bg-blue-50/80 border-blue-300 shadow-xs ring-1 ring-blue-300'
-                        : 'bg-slate-50/70 border-slate-200/90 hover:bg-slate-100/70 hover:border-slate-300'
+                        ? 'bg-blue-50/80 dark:bg-blue-950/50 border-blue-300 dark:border-blue-700 shadow-xs ring-1 ring-blue-300 dark:ring-blue-700'
+                        : 'bg-slate-50/70 dark:bg-slate-800/50 border-slate-200/90 dark:border-slate-800 hover:bg-slate-100/70 hover:border-slate-300'
                     }`}
                   >
                     <div className="flex items-center justify-between">

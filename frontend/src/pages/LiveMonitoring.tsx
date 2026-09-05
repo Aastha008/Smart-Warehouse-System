@@ -44,18 +44,18 @@ export default function LiveMonitoring() {
   });
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto flex flex-col min-h-[calc(100vh-8rem)]">
+    <div className="space-y-6 w-full flex flex-col min-h-[calc(100vh-8rem)]">
       {/* Top Header & Alert Banner */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2.5">
-            <h1 className="text-xl font-bold text-white tracking-tight">Live Dock Bay Cameras</h1>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Live Dock Bay Cameras</h1>
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
               6 BAYS LIVE
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Real-time dock views across Loading Bays 1 through 6 with automated alerts for drops, tilts, and lane obstructions.
           </p>
         </div>
@@ -64,20 +64,20 @@ export default function LiveMonitoring() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setFilterStatus('ALL')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
               filterStatus === 'ALL'
                 ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50'
             }`}
           >
             All Feeds (6)
           </button>
           <button
             onClick={() => setFilterStatus('ALERTS')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
               filterStatus === 'ALERTS'
                 ? 'bg-rose-600 text-white border-rose-600 shadow-sm'
-                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50'
             }`}
           >
             Attention Needed (4)
@@ -87,19 +87,19 @@ export default function LiveMonitoring() {
 
       {/* Quick Alerts Banner */}
       {alerts.length > 0 && (
-        <div className="bg-white border border-rose-200 rounded-2xl p-4 shadow-xs flex items-center justify-between gap-4">
+        <div className="bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/60 rounded-xl p-4 shadow-xs flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 shrink-0 animate-pulse">
+            <div className="w-9 h-9 rounded-lg bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 flex items-center justify-center text-rose-600 dark:text-rose-400 shrink-0 animate-pulse">
               <ShieldAlert className="w-5 h-5" />
             </div>
             <div className="text-xs">
-              <span className="font-bold text-slate-900">Active Alert Flag: </span>
-              <span className="text-slate-600">{alerts[0].message}</span>
+              <span className="font-bold text-slate-900 dark:text-white">Active Alert Flag: </span>
+              <span className="text-slate-600 dark:text-slate-300">{alerts[0].message}</span>
             </div>
           </div>
           <button
             onClick={() => audioAlerts.playChime('CRITICAL')}
-            className="px-3.5 py-1.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shrink-0 transition-colors shadow-xs"
+            className="px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shrink-0 transition-colors shadow-xs"
           >
             Play Alert Sound
           </button>
@@ -121,8 +121,8 @@ export default function LiveMonitoring() {
       {/* Fullscreen Expanded Camera Modal */}
       {expandedFeed && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl border border-slate-200 w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col">
-            <div className="p-4 px-6 border-b border-slate-100 flex items-center justify-between bg-slate-900 text-white">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col">
+            <div className="p-4 px-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-900 text-white">
               <div className="flex items-center gap-2">
                 <Camera className="w-5 h-5 text-blue-400" />
                 <span className="font-bold text-white text-sm">{expandedFeed.name}</span>
@@ -137,7 +137,7 @@ export default function LiveMonitoring() {
             </div>
 
             <div className="p-4 flex-1 bg-slate-950">
-              <div className="aspect-video w-full rounded-2xl overflow-hidden relative bg-black">
+              <div className="aspect-video w-full rounded-lg overflow-hidden relative bg-black">
                 <SimulatedLiveCanvas feed={expandedFeed} isExpanded />
               </div>
             </div>
@@ -178,12 +178,12 @@ function LiveCameraCard({
 
   return (
     <div
-      className={`bg-white rounded-3xl border shadow-xs hover:shadow-md transition-all flex flex-col overflow-hidden group ${
+      className={`bg-white dark:bg-slate-900 rounded-xl border shadow-xs hover:shadow-md transition-all flex flex-col overflow-hidden group ${
         isAlert
-          ? 'border-rose-300 ring-1 ring-rose-200'
+          ? 'border-rose-300 dark:border-rose-800 ring-1 ring-rose-200 dark:ring-rose-900'
           : isWarn
-          ? 'border-amber-300'
-          : 'border-slate-200/90'
+          ? 'border-amber-300 dark:border-amber-800'
+          : 'border-slate-200/90 dark:border-slate-800'
       }`}
     >
       {/* Stream Video / Canvas Rendering */}

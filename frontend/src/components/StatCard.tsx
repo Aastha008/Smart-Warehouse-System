@@ -154,7 +154,7 @@ export default function StatCard({
   return (
     <div
       onClick={onClick}
-      className={`rounded-2xl border transition-all duration-200 p-5 flex flex-col justify-between relative overflow-hidden group ${styles.container} ${
+      className={`rounded-xl border transition-all duration-200 p-5 flex flex-col justify-between relative overflow-hidden group ${styles.container} ${
         onClick ? 'cursor-pointer' : ''
       }`}
     >

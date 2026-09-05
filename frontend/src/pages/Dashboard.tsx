@@ -110,9 +110,9 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="space-y-6 max-w-[1600px] mx-auto">
-      {/* 1. TOP ROW: 4 Elevated Warehouse StatCards Straddling the Canopy (Super Finti Elevated Look) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 -mt-16 sm:-mt-20 relative z-20">
+    <div className="space-y-6 w-full">
+      {/* 1. TOP ROW: 4 Elevated Warehouse StatCards Straddling the Canopy */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 -mt-12 sm:-mt-14 relative z-20">
         <StatCard
           title="Handled Items (30d)"
           value={summary?.totalEvents || 428}
@@ -179,7 +179,7 @@ export default function Dashboard() {
         {/* Left 8 Columns: Trends, Frequent Issues, Bay Matrix, and Shift Checklist */}
         <div className="xl:col-span-8 space-y-6">
           {/* Main 7-Day Trend Chart Card */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <h2 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
@@ -202,7 +202,7 @@ export default function Dashboard() {
           {/* Grid Row: Frequent Issues & Severity Breakdown Donut */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Top Handling Behaviors Bar Chart */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col justify-between">
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-slate-800">
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">Frequent Handling Issues</h3>
@@ -247,7 +247,7 @@ export default function Dashboard() {
             </div>
 
             {/* Severity Breakdown Donut */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col justify-between">
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-start mb-2 pb-2 border-b border-slate-100 dark:border-slate-800">
                   <div>
@@ -295,7 +295,7 @@ export default function Dashboard() {
           </div>
 
           {/* Dock Bay Status Matrix */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Dock Bay Status Overview</h3>
@@ -316,7 +316,7 @@ export default function Dashboard() {
                   <div
                     key={bay.location || idx}
                     onClick={() => navigate('/video')}
-                    className={`p-3.5 rounded-2xl border transition-all cursor-pointer hover:scale-[1.02] flex flex-col justify-between h-28 ${
+                    className={`p-3.5 rounded-lg border transition-all cursor-pointer hover:scale-[1.02] flex flex-col justify-between h-28 ${
                       isCrit
                         ? 'bg-rose-50/70 dark:bg-rose-950/40 border-rose-200 dark:border-rose-900 hover:bg-rose-50'
                         : isWarn
@@ -348,7 +348,7 @@ export default function Dashboard() {
           </div>
 
           {/* Shift Safety Action Checklist */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6">
             <div className="flex items-center justify-between mb-3 pb-3 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Shift Safety Checklist</h3>
@@ -364,7 +364,7 @@ export default function Dashboard() {
                 <div
                   key={task.id}
                   onClick={() => toggleTask(task.id)}
-                  className={`p-3 rounded-2xl border transition-all flex items-center justify-between gap-3 cursor-pointer ${
+                  className={`p-3 rounded-lg border transition-all flex items-center justify-between gap-3 cursor-pointer ${
                     task.completed
                       ? 'bg-slate-50/60 dark:bg-slate-800/40 border-slate-200/60 dark:border-slate-800 opacity-60'
                       : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 hover:border-slate-300'
@@ -397,7 +397,7 @@ export default function Dashboard() {
         {/* Right 4 Columns: Incident Timeline Feed & Supervisor Chat Card */}
         <div className="xl:col-span-4 space-y-6">
           {/* Live Recent Incident Feed */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Recent Dock Flags</h3>
@@ -421,9 +421,9 @@ export default function Dashboard() {
           </div>
 
           {/* Supervisor Assistant Quick Access Card */}
-          <div className="bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800">
+          <div className="bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white rounded-xl p-6 shadow-xl border border-slate-800">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-2xl bg-purple-600 flex items-center justify-center text-white shadow-md shadow-purple-500/30">
+              <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shadow-md shadow-purple-500/30">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
@@ -436,7 +436,7 @@ export default function Dashboard() {
             </p>
             <button
               onClick={() => navigate('/assistant')}
-              className="w-full py-2.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all shadow-md shadow-purple-600/30 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all shadow-md shadow-purple-600/30 active:scale-95 flex items-center justify-center gap-2"
             >
               Open Shift Chat <ArrowUpRight className="w-4 h-4" />
             </button>

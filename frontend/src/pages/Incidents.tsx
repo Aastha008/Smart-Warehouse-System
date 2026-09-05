@@ -158,19 +158,19 @@ export default function Incidents() {
     : {}) as Record<string, any>;
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
+    <div className="space-y-6 w-full">
       {/* Top Header & Export Actions */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Dock Handling Incident Log</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Dock Handling Incident Log</h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Review recorded handling events across bays, inspect camera timestamps, and track follow-up coaching.
           </p>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={handleExportCSV}
-            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 rounded-full text-xs font-bold text-white shadow-sm flex items-center gap-2 transition-all active:scale-95"
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold shadow-sm flex items-center gap-2 transition-all active:scale-95"
           >
             <Download className="w-4 h-4" /> Export CSV ({filteredEvents.length})
           </button>
@@ -179,9 +179,9 @@ export default function Incidents() {
 
       {/* Active Alerts Banner */}
       {unackAlertsCount > 0 && (
-        <div className="bg-gradient-to-r from-rose-500/10 via-amber-500/10 to-purple-500/10 border border-rose-200 dark:border-rose-900/60 rounded-3xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+        <div className="bg-gradient-to-r from-rose-500/10 via-amber-500/10 to-purple-500/10 border border-rose-200 dark:border-rose-900/60 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-2xl bg-rose-500 text-white flex items-center justify-center shadow-md shadow-rose-500/20 shrink-0">
+            <div className="w-9 h-9 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-md shadow-rose-500/20 shrink-0">
               <ShieldAlert className="w-5 h-5" />
             </div>
             <div>
@@ -189,7 +189,7 @@ export default function Incidents() {
                 <span className="text-xs font-black text-rose-600 dark:text-rose-400 uppercase tracking-wide">
                   Active Safety Attention Required
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-500 text-white animate-pulse">
+                <span className="px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-500 text-white animate-pulse">
                   {unackAlertsCount} ACTIVE ALERTS
                 </span>
               </div>
@@ -200,7 +200,7 @@ export default function Incidents() {
           </div>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-alerts-drawer'))}
-            className="px-4 py-2 rounded-2xl bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold text-xs shadow-md shadow-rose-600/25 active:scale-95 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+            className="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold text-xs shadow-md shadow-rose-600/25 active:scale-95 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
           >
             <Bell className="w-3.5 h-3.5" />
             <span>Open Alerts Center ({unackAlertsCount})</span>
@@ -209,7 +209,7 @@ export default function Incidents() {
       )}
 
       {/* Filter Toolbar */}
-      <div className="bg-white border border-slate-200/90 rounded-3xl p-4 shadow-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-xl p-4 shadow-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Search Input */}
         <div className="relative">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -218,7 +218,7 @@ export default function Incidents() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search ID, type, location..."
-            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-blue-500 transition-all"
           />
         </div>
 
@@ -227,7 +227,7 @@ export default function Incidents() {
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
+            className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-blue-500 transition-all"
           >
             <option value="ALL">All Severities</option>
             <option value="CRITICAL">Critical Severity</option>
@@ -242,7 +242,7 @@ export default function Incidents() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
+            className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-blue-500 transition-all"
           >
             {BEHAVIOUR_TYPES.map((b) => (
               <option key={b.value} value={b.value}>
@@ -257,7 +257,7 @@ export default function Incidents() {
           <select
             value={locationFilter}
             onChange={(e) => setLocationFilter(e.target.value)}
-            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
+            className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-blue-500 transition-all"
           >
             {LOCATIONS.map((loc) => (
               <option key={loc} value={loc}>
@@ -269,7 +269,7 @@ export default function Incidents() {
       </div>
 
       {/* Incidents Table */}
-      <div className="bg-white border border-slate-200/90 rounded-3xl shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-xl shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs text-slate-700">
             <thead className="bg-slate-50/90 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
@@ -367,11 +367,11 @@ export default function Incidents() {
       {/* Incident Detail Inspection Modal */}
       {selectedIncident && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-white border border-slate-200 rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
             {/* Modal Header */}
             <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900 text-white">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+                <div className="w-10 h-10 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
@@ -388,7 +388,7 @@ export default function Incidents() {
               </div>
               <button
                 onClick={() => setSelectedIncident(null)}
-                className="p-1.5 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors"
+                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -404,56 +404,56 @@ export default function Incidents() {
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {selectedEvidence.drop_height_m !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Drop Height</span>
                       <span className="text-sm font-black text-rose-600 font-mono">{selectedEvidence.drop_height_m} m</span>
                     </div>
                   )}
                   {selectedEvidence.impact_velocity_mps !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Impact Velocity</span>
                       <span className="text-sm font-black text-orange-600 font-mono">{selectedEvidence.impact_velocity_mps} m/s</span>
                     </div>
                   )}
                   {selectedEvidence.tilt_angle_deg !== undefined && (
-                    <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                       <span className="text-[10px] text-slate-500 uppercase font-bold block">Tilt Angle</span>
                       <span className="text-sm font-black text-amber-600 font-mono">{selectedEvidence.tilt_angle_deg}°</span>
                     </div>
                   )}
-                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                  <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                     <span className="text-[10px] text-slate-500 uppercase font-bold block">Risk Score</span>
-                    <span className="text-sm font-black text-slate-900 font-mono">{selectedIncident.risk_score ?? 82}/100</span>
+                    <span className="text-sm font-black text-slate-900 dark:text-white font-mono">{selectedIncident.risk_score ?? 82}/100</span>
                   </div>
-                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                  <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                     <span className="text-[10px] text-slate-500 uppercase font-bold block">Confidence</span>
                     <span className="text-sm font-black text-emerald-600 font-mono">
                       {Math.round((selectedIncident.confidence || 0.85) * 100)}%
                     </span>
                   </div>
-                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                  <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
                     <span className="text-[10px] text-slate-500 uppercase font-bold block">Damage Status</span>
-                    <span className="text-xs font-bold text-emerald-600">Potential Risk</span>
+                    <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">Potential Risk</span>
                   </div>
                 </div>
               </div>
 
               {/* Observed Explanation */}
-              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-1">
-                <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block">
+              <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-lg border border-slate-200 dark:border-slate-700 space-y-1">
+                <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider block">
                   Observed Behavior Summary
                 </span>
-                <p className="text-xs text-slate-700 leading-relaxed">
+                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                   {selectedIncident.explanation || selectedIncident.description}
                 </p>
               </div>
 
               {/* Actionable Recommendation */}
-              <div className="bg-blue-50/70 p-4 rounded-2xl border border-blue-200/80 space-y-1">
-                <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wider block">
+              <div className="bg-blue-50/70 dark:bg-blue-950/40 p-4 rounded-lg border border-blue-200/80 dark:border-blue-800 space-y-1">
+                <span className="text-[11px] font-bold text-blue-700 dark:text-blue-300 uppercase tracking-wider block">
                   Actionable Prevention Recommendation
                 </span>
-                <p className="text-xs text-slate-700 leading-relaxed">
+                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                   {selectedIncident.recommendation ||
                     'Review safe handling procedures and provide appropriate transport dollies.'}
                 </p>
@@ -461,10 +461,10 @@ export default function Incidents() {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-4 px-6 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
+            <div className="p-4 px-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
               <button
                 onClick={() => setSelectedIncident(null)}
-                className="px-4 py-2 rounded-full bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors"
+                className="px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 text-slate-700 dark:text-slate-200 text-xs font-bold transition-colors"
               >
                 Close
               </button>
@@ -473,7 +473,7 @@ export default function Incidents() {
                   setSelectedIncident(null);
                   navigate('/video');
                 }}
-                className="px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-sm flex items-center gap-2 transition-all active:scale-95"
+                className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-sm flex items-center gap-2 transition-all active:scale-95"
               >
                 <Video className="w-4 h-4" /> Replay in Video Player
               </button>
