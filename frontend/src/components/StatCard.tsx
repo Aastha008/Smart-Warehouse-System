@@ -29,90 +29,43 @@ interface StatCardProps {
   variant?: StatCardVariant;
 }
 
-const variantStyles: Record<
+const variantTheme: Record<
   StatCardVariant,
   {
-    container: string;
-    divider: string;
-    title: string;
-    value: string;
-    subtitle: string;
-    chartHeader: string;
-    trackBg: string;
+    topBorder: string;
     badgeDefault: string;
+    barDefault: string;
   }
 > = {
   blue: {
-    container:
-      'bg-[#F0F5FF] dark:bg-[#141C33] border-[#D9E5FD] dark:border-[#223154] hover:border-[#BFD3FB] dark:hover:border-[#32487A] shadow-xs hover:shadow-md hover:shadow-blue-500/5',
-    divider: 'border-[#E1ECFE] dark:border-[#1E2B4A]',
-    title: 'text-[#2B4375] dark:text-[#A8C5FD]',
-    value: 'text-[#111C38] dark:text-white',
-    subtitle: 'text-[#5A6F98] dark:text-[#8BA4D6]',
-    chartHeader: 'text-[#7E93BE] dark:text-[#6C85B5]',
-    trackBg: 'bg-[#DCE7FC] dark:bg-[#1A2542]',
-    badgeDefault:
-      'bg-[#E2ECFF] dark:bg-[#1C2C52] text-[#2557CA] dark:text-[#85A9FF] border-blue-200/80 dark:border-blue-800/80',
+    topBorder: 'border-t-blue-500',
+    badgeDefault: 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800',
+    barDefault: 'bg-blue-500',
   },
   rose: {
-    container:
-      'bg-[#FFF0F3] dark:bg-[#30161F] border-[#FDDCE3] dark:border-[#4F222F] hover:border-[#FBBECB] dark:hover:border-[#6E2E3F] shadow-xs hover:shadow-md hover:shadow-rose-500/5',
-    divider: 'border-[#FCE3E8] dark:border-[#441C28]',
-    title: 'text-[#752B3C] dark:text-[#FDA8BA]',
-    value: 'text-[#38111B] dark:text-white',
-    subtitle: 'text-[#985A68] dark:text-[#D68B9C]',
-    chartHeader: 'text-[#BE7E8D] dark:text-[#B56C7E]',
-    trackBg: 'bg-[#FCDCE2] dark:bg-[#3D1822]',
-    badgeDefault:
-      'bg-[#FFE2E8] dark:bg-[#4E1A27] text-[#CA254B] dark:text-[#FF859F] border-rose-200/80 dark:border-rose-800/80',
+    topBorder: 'border-t-rose-500',
+    badgeDefault: 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800',
+    barDefault: 'bg-rose-500',
   },
   emerald: {
-    container:
-      'bg-[#EDFAF3] dark:bg-[#11291F] border-[#D1F2E2] dark:border-[#1D4634] hover:border-[#A8E6C8] dark:hover:border-[#265F45] shadow-xs hover:shadow-md hover:shadow-emerald-500/5',
-    divider: 'border-[#DCF6E9] dark:border-[#173829]',
-    title: 'text-[#236348] dark:text-[#8EE6BE]',
-    value: 'text-[#0C2A1E] dark:text-white',
-    subtitle: 'text-[#49866B] dark:text-[#72BFA0]',
-    chartHeader: 'text-[#69A88C] dark:text-[#529E7D]',
-    trackBg: 'bg-[#D3F3E3] dark:bg-[#153A2A]',
-    badgeDefault:
-      'bg-[#DCF7E9] dark:bg-[#17412E] text-[#168553] dark:text-[#67E2A6] border-emerald-200/80 dark:border-emerald-800/80',
+    topBorder: 'border-t-emerald-500',
+    badgeDefault: 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
+    barDefault: 'bg-emerald-500',
   },
   amber: {
-    container:
-      'bg-[#FFF9EC] dark:bg-[#302212] border-[#FDEBC8] dark:border-[#4E371B] hover:border-[#FCDA95] dark:hover:border-[#6E4D23] shadow-xs hover:shadow-md hover:shadow-amber-500/5',
-    divider: 'border-[#FCEFD3] dark:border-[#432F16]',
-    title: 'text-[#755223] dark:text-[#FDD08E]',
-    value: 'text-[#38240A] dark:text-white',
-    subtitle: 'text-[#987545] dark:text-[#D6AE74]',
-    chartHeader: 'text-[#BE9864] dark:text-[#B58D52]',
-    trackBg: 'bg-[#FCEAC5] dark:bg-[#3D2B15]',
-    badgeDefault:
-      'bg-[#FFF0CF] dark:bg-[#4E3618] text-[#B87014] dark:text-[#FFC773] border-amber-200/80 dark:border-amber-800/80',
+    topBorder: 'border-t-amber-500',
+    badgeDefault: 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800',
+    barDefault: 'bg-amber-500',
   },
   purple: {
-    container:
-      'bg-[#F8F2FF] dark:bg-[#231538] border-[#ECD8FF] dark:border-[#3F2263] hover:border-[#DCB8FF] dark:hover:border-[#592F8D] shadow-xs hover:shadow-md hover:shadow-purple-500/5',
-    divider: 'border-[#F2E2FF] dark:border-[#341B50]',
-    title: 'text-[#552786] dark:text-[#D9B8FD]',
-    value: 'text-[#250F3E] dark:text-white',
-    subtitle: 'text-[#7950A7] dark:text-[#B48FDF]',
-    chartHeader: 'text-[#9A74C4] dark:text-[#9A73C9]',
-    trackBg: 'bg-[#EBD6FF] dark:bg-[#30194B]',
-    badgeDefault:
-      'bg-[#F1E0FF] dark:bg-[#3C1B60] text-[#7C27D2] dark:text-[#D59BFF] border-purple-200/80 dark:border-purple-800/80',
+    topBorder: 'border-t-purple-500',
+    badgeDefault: 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800',
+    barDefault: 'bg-purple-500',
   },
   default: {
-    container:
-      'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md',
-    divider: 'border-slate-100 dark:border-slate-800',
-    title: 'text-slate-800 dark:text-slate-200',
-    value: 'text-slate-900 dark:text-white',
-    subtitle: 'text-slate-500 dark:text-slate-400',
-    chartHeader: 'text-slate-400 dark:text-slate-500',
-    trackBg: 'bg-slate-100 dark:bg-slate-800',
-    badgeDefault:
-      'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700',
+    topBorder: 'border-t-slate-400',
+    badgeDefault: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700',
+    barDefault: 'bg-slate-500',
   },
 };
 
@@ -128,111 +81,77 @@ export default function StatCard({
   chartHeader,
   onClick,
   iconBgClass,
-  colorClass,
   variant = 'default',
 }: StatCardProps) {
   const maxVal =
     miniBars && miniBars.length > 0 ? Math.max(...miniBars.map((b) => b.value), 1) : 100;
-  const styles = variantStyles[variant] || variantStyles.default;
+  const theme = variantTheme[variant] || variantTheme.default;
 
   const getBadgeStyle = () => {
     if (badgeType === 'success') {
-      return 'bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800';
+      return 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800';
     }
     if (badgeType === 'warning') {
-      return 'bg-amber-100/80 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border-amber-200/80 dark:border-amber-800';
+      return 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800';
     }
     if (badgeType === 'danger') {
-      return 'bg-rose-100/80 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200/80 dark:border-rose-800';
+      return 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800';
     }
     if (badgeType === 'info') {
-      return 'bg-blue-100/80 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200/80 dark:border-blue-800';
+      return 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800';
     }
-    return styles.badgeDefault;
+    return theme.badgeDefault;
   };
 
   return (
     <div
       onClick={onClick}
-      className={`rounded-xl border transition-all duration-200 p-4.5 sm:p-5 flex flex-col justify-between relative overflow-hidden group ${styles.container} ${
+      className={`bg-white dark:bg-slate-800/95 border border-slate-200/90 dark:border-slate-700/80 border-t-2 ${theme.topBorder} rounded-xl p-5 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between h-full min-h-[175px] ${
         onClick ? 'cursor-pointer' : ''
       }`}
     >
-      {/* Top Header Row */}
-      <div className={`flex items-center justify-between gap-2 pb-2 mb-3 border-b ${styles.divider}`}>
-        <div className="flex items-center gap-2 min-w-0">
-          <span className={`text-xs font-bold tracking-tight truncate ${styles.title}`}>{title}</span>
-          {badge && (
-            <span
-              className={`text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${getBadgeStyle()}`}
-            >
-              {badge}
-            </span>
-          )}
-        </div>
-        {chartHeader && (
-          <span className={`text-[10px] font-semibold uppercase tracking-wider shrink-0 ${styles.chartHeader}`}>
-            {chartHeader}
+      {/* 1. Top Header Row: Clean full title & status pill */}
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          {title}
+        </span>
+        {badge && (
+          <span
+            className={`text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${getBadgeStyle()}`}
+          >
+            {badge}
           </span>
         )}
       </div>
 
-      {/* Main Metric & Visual Section */}
-      <div className="flex items-end justify-between gap-3 my-1">
-        {/* Left Side: Numeric Value & Delta */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-baseline gap-2 flex-wrap">
-            <h3 className={`text-2xl lg:text-3xl font-black tracking-tight leading-none ${styles.value}`}>
-              {value}
-            </h3>
-            {trend && (
-              <span
-                className={`inline-flex items-center gap-0.5 text-[11px] font-bold px-1.5 py-0.5 rounded-md shrink-0 ${
-                  trend.isPositive
-                    ? 'bg-emerald-100/70 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400'
-                    : 'bg-rose-100/70 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400'
-                }`}
-              >
-                {trend.isPositive ? (
-                  <TrendingUp className="w-3 h-3" />
-                ) : (
-                  <TrendingDown className="w-3 h-3" />
-                )}
-                {trend.isPositive ? '+' : '-'}
-                {Math.abs(trend.value)}%
-              </span>
-            )}
+      {/* 2. Middle Row: Bold metric with subtitle & sparkline microbars */}
+      <div className="flex items-end justify-between gap-3 my-auto">
+        <div className="min-w-0 flex-1">
+          <div className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
+            {value}
           </div>
           {subtitle && (
-            <p className={`text-[11px] mt-2 font-medium truncate ${styles.subtitle}`} title={subtitle}>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1.5 leading-snug">
               {subtitle}
             </p>
           )}
         </div>
 
-        {/* Right Side: Micro Bar Chart or Icon */}
+        {/* Micro Bar Sparkline or Icon */}
         {miniBars && miniBars.length > 0 ? (
-          <div className="flex items-end gap-1.5 h-13 shrink-0 pl-2">
+          <div className="flex items-end gap-1.5 shrink-0 pl-3">
             {miniBars.map((bar, idx) => {
               const heightPct = Math.max(18, Math.round((bar.value / maxVal) * 100));
-              const barColor =
-                bar.color ||
-                (idx === 0
-                  ? 'bg-indigo-400'
-                  : idx === 1
-                  ? 'bg-sky-400'
-                  : 'bg-amber-400');
+              const barColor = bar.color || theme.barDefault;
               return (
-                <div key={idx} className="flex flex-col items-center w-6 gap-1">
-                  <div
-                    className={`w-3 rounded-md h-9 flex items-end overflow-hidden ${styles.trackBg}`}
-                  >
+                <div key={idx} className="flex flex-col items-center w-5 gap-1">
+                  <div className="w-2.5 h-10 rounded-full bg-slate-100 dark:bg-slate-700/60 flex items-end overflow-hidden">
                     <div
-                      className={`w-full rounded-md transition-all duration-500 ${barColor}`}
+                      className={`w-full rounded-full transition-all duration-500 ${barColor}`}
                       style={{ height: `${heightPct}%` }}
                     />
                   </div>
-                  <span className={`text-[9px] font-semibold truncate w-full text-center ${styles.chartHeader}`}>
+                  <span className="text-[9px] font-semibold text-slate-400 dark:text-slate-500 text-center truncate w-full">
                     {bar.label}
                   </span>
                 </div>
@@ -242,9 +161,9 @@ export default function StatCard({
         ) : Icon ? (
           <div className="shrink-0">
             <div
-              className={`w-9 h-9 rounded-lg border flex items-center justify-center shadow-2xs ${
+              className={`w-9 h-9 rounded-lg border flex items-center justify-center ${
                 iconBgClass ||
-                'bg-slate-50 dark:bg-slate-800 border-slate-200/80 dark:border-slate-700 text-blue-600 dark:text-blue-400'
+                'bg-slate-50 dark:bg-slate-700/50 border-slate-200 dark:border-slate-700 text-blue-600 dark:text-blue-400'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -253,15 +172,42 @@ export default function StatCard({
         ) : null}
       </div>
 
-      {/* Footer Trend Context */}
-      {trend?.label && (
-        <div
-          className={`mt-3 pt-2 border-t ${styles.divider} flex items-center justify-between text-[11px] ${styles.chartHeader}`}
-        >
-          <span className="truncate mr-2">{trend.label}</span>
-          <span className="text-[10px] font-mono opacity-80 shrink-0">Dock Feed</span>
-        </div>
-      )}
+      {/* 3. Bottom Footer Row: Standardized across all 4 cards for perfect alignment */}
+      <div className="pt-2.5 mt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between text-xs">
+        {trend ? (
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span
+              className={`inline-flex items-center gap-0.5 text-[10px] font-bold px-1.5 py-0.5 rounded-md shrink-0 ${
+                trend.isPositive
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800/80'
+                  : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border border-rose-200/80 dark:border-rose-800/80'
+              }`}
+            >
+              {trend.isPositive ? (
+                <TrendingUp className="w-3 h-3" />
+              ) : (
+                <TrendingDown className="w-3 h-3" />
+              )}
+              {trend.isPositive ? '+' : '-'}
+              {Math.abs(trend.value)}%
+            </span>
+            {trend.label && (
+              <span className="text-slate-500 dark:text-slate-400 text-[11px] font-medium truncate">
+                {trend.label}
+              </span>
+            )}
+          </div>
+        ) : (
+          <div className="flex items-center gap-1.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+            <span>Telemetry active</span>
+          </div>
+        )}
+
+        <span className="text-[10px] font-mono font-medium text-slate-400 dark:text-slate-500 shrink-0 ml-2">
+          Dock Feed
+        </span>
+      </div>
     </div>
   );
 }
