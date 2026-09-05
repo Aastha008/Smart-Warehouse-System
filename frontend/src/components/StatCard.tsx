@@ -154,47 +154,49 @@ export default function StatCard({
   return (
     <div
       onClick={onClick}
-      className={`rounded-xl border transition-all duration-200 p-5 flex flex-col justify-between relative overflow-hidden group ${styles.container} ${
+      className={`rounded-xl border transition-all duration-200 p-4.5 sm:p-5 flex flex-col justify-between relative overflow-hidden group ${styles.container} ${
         onClick ? 'cursor-pointer' : ''
       }`}
     >
       {/* Top Header Row */}
-      <div className={`flex items-center justify-between pb-2 mb-2 border-b ${styles.divider}`}>
-        <div className="flex items-center gap-2">
-          <span className={`text-xs font-bold tracking-tight ${styles.title}`}>{title}</span>
+      <div className={`flex items-center justify-between gap-2 pb-2 mb-3 border-b ${styles.divider}`}>
+        <div className="flex items-center gap-2 min-w-0">
+          <span className={`text-xs font-bold tracking-tight truncate ${styles.title}`}>{title}</span>
           {badge && (
             <span
-              className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getBadgeStyle()}`}
+              className={`text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${getBadgeStyle()}`}
             >
               {badge}
             </span>
           )}
         </div>
         {chartHeader && (
-          <span className={`text-[11px] font-semibold ${styles.chartHeader}`}>{chartHeader}</span>
+          <span className={`text-[10px] font-semibold uppercase tracking-wider shrink-0 ${styles.chartHeader}`}>
+            {chartHeader}
+          </span>
         )}
       </div>
 
-      {/* Main Split Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+      {/* Main Metric & Visual Section */}
+      <div className="flex items-end justify-between gap-3 my-1">
         {/* Left Side: Numeric Value & Delta */}
-        <div className={miniBars && miniBars.length > 0 ? 'sm:col-span-7' : 'sm:col-span-12'}>
-          <div className="flex items-baseline gap-2">
-            <h3 className={`text-2xl lg:text-3xl font-black tracking-tight ${styles.value}`}>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-baseline gap-2 flex-wrap">
+            <h3 className={`text-2xl lg:text-3xl font-black tracking-tight leading-none ${styles.value}`}>
               {value}
             </h3>
             {trend && (
               <span
-                className={`inline-flex items-center gap-0.5 text-xs font-bold px-1.5 py-0.5 rounded-md ${
+                className={`inline-flex items-center gap-0.5 text-[11px] font-bold px-1.5 py-0.5 rounded-md shrink-0 ${
                   trend.isPositive
                     ? 'bg-emerald-100/70 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400'
                     : 'bg-rose-100/70 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400'
                 }`}
               >
                 {trend.isPositive ? (
-                  <TrendingUp className="w-3.5 h-3.5" />
+                  <TrendingUp className="w-3 h-3" />
                 ) : (
-                  <TrendingDown className="w-3.5 h-3.5" />
+                  <TrendingDown className="w-3 h-3" />
                 )}
                 {trend.isPositive ? '+' : '-'}
                 {Math.abs(trend.value)}%
@@ -202,15 +204,17 @@ export default function StatCard({
             )}
           </div>
           {subtitle && (
-            <p className={`text-[11px] mt-1 font-medium ${styles.subtitle}`}>{subtitle}</p>
+            <p className={`text-[11px] mt-2 font-medium truncate ${styles.subtitle}`} title={subtitle}>
+              {subtitle}
+            </p>
           )}
         </div>
 
-        {/* Right Side: Micro Bar Chart (Reference Design Style) */}
+        {/* Right Side: Micro Bar Chart or Icon */}
         {miniBars && miniBars.length > 0 ? (
-          <div className="sm:col-span-5 flex items-end justify-end gap-2 h-14 pt-1">
+          <div className="flex items-end gap-2 h-13 shrink-0 pl-2">
             {miniBars.map((bar, idx) => {
-              const heightPct = Math.max(15, Math.round((bar.value / maxVal) * 100));
+              const heightPct = Math.max(18, Math.round((bar.value / maxVal) * 100));
               const barColor =
                 bar.color ||
                 (idx === 0
@@ -221,14 +225,14 @@ export default function StatCard({
               return (
                 <div key={idx} className="flex flex-col items-center gap-1">
                   <div
-                    className={`w-3.5 rounded-md h-10 flex items-end overflow-hidden ${styles.trackBg}`}
+                    className={`w-3.5 rounded-md h-9 flex items-end overflow-hidden ${styles.trackBg}`}
                   >
                     <div
                       className={`w-full rounded-md transition-all duration-500 ${barColor}`}
                       style={{ height: `${heightPct}%` }}
                     />
                   </div>
-                  <span className={`text-[9px] font-medium ${styles.chartHeader}`}>
+                  <span className={`text-[9px] font-semibold ${styles.chartHeader}`}>
                     {bar.label}
                   </span>
                 </div>
@@ -236,9 +240,9 @@ export default function StatCard({
             })}
           </div>
         ) : Icon ? (
-          <div className="hidden sm:flex justify-end items-center sm:col-span-12">
+          <div className="shrink-0">
             <div
-              className={`w-9 h-9 rounded-xl border flex items-center justify-center shadow-2xs ${
+              className={`w-9 h-9 rounded-lg border flex items-center justify-center shadow-2xs ${
                 iconBgClass ||
                 'bg-slate-50 dark:bg-slate-800 border-slate-200/80 dark:border-slate-700 text-blue-600 dark:text-blue-400'
               }`}
@@ -254,8 +258,8 @@ export default function StatCard({
         <div
           className={`mt-3 pt-2 border-t ${styles.divider} flex items-center justify-between text-[11px] ${styles.chartHeader}`}
         >
-          <span>{trend.label}</span>
-          <span className="text-[10px] font-mono opacity-80">Dock Feed</span>
+          <span className="truncate mr-2">{trend.label}</span>
+          <span className="text-[10px] font-mono opacity-80 shrink-0">Dock Feed</span>
         </div>
       )}
     </div>
