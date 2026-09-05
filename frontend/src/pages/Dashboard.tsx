@@ -145,15 +145,15 @@ export default function Dashboard() {
         />
         <StatCard
           title="Active Dock Bays"
-          value={`${summary?.activeCameras || 6}/6 Live`}
+          value={`${summary?.activeCameras || 6}/6`}
           subtitle="Loading Bays 1 through 6 streaming"
           badge="All Online"
           badgeType="success"
           variant="emerald"
           miniBars={[
-            { label: 'B1-2', value: 92, color: 'bg-emerald-300' },
-            { label: 'B3-4', value: 98, color: 'bg-emerald-400' },
-            { label: 'B5-6', value: 95, color: 'bg-emerald-500' },
+            { label: 'B1-2', value: 92, color: 'bg-emerald-400' },
+            { label: 'B3-4', value: 98, color: 'bg-emerald-500' },
+            { label: 'B5-6', value: 95, color: 'bg-emerald-600' },
           ]}
           chartHeader="Uptime 100%"
         />
@@ -161,14 +161,14 @@ export default function Dashboard() {
           title="Safe Handling Rate"
           value={`${summary?.preventionRate || 95.8}%`}
           subtitle="Handled without impact or drop"
-          badge="+3.2%"
+          badge="Shift Lead"
           badgeType="success"
           variant="amber"
           trend={{ value: 3.2, isPositive: true, label: 'shift improvement' }}
           miniBars={[
-            { label: 'Morning', value: 94, color: 'bg-amber-300' },
-            { label: 'Afternoon', value: 92, color: 'bg-amber-400' },
-            { label: 'Night', value: 96, color: 'bg-amber-500' },
+            { label: 'Morn', value: 94, color: 'bg-amber-400' },
+            { label: 'Aft', value: 92, color: 'bg-amber-500' },
+            { label: 'Eve', value: 96, color: 'bg-amber-600' },
           ]}
           chartHeader="By Shift"
         />

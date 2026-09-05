@@ -212,27 +212,27 @@ export default function StatCard({
 
         {/* Right Side: Micro Bar Chart or Icon */}
         {miniBars && miniBars.length > 0 ? (
-          <div className="flex items-end gap-2 h-13 shrink-0 pl-2">
+          <div className="flex items-end gap-1.5 h-13 shrink-0 pl-2">
             {miniBars.map((bar, idx) => {
               const heightPct = Math.max(18, Math.round((bar.value / maxVal) * 100));
               const barColor =
                 bar.color ||
                 (idx === 0
-                  ? 'bg-indigo-300'
+                  ? 'bg-indigo-400'
                   : idx === 1
-                  ? 'bg-sky-300'
-                  : 'bg-amber-300');
+                  ? 'bg-sky-400'
+                  : 'bg-amber-400');
               return (
-                <div key={idx} className="flex flex-col items-center gap-1">
+                <div key={idx} className="flex flex-col items-center w-6 gap-1">
                   <div
-                    className={`w-3.5 rounded-md h-9 flex items-end overflow-hidden ${styles.trackBg}`}
+                    className={`w-3 rounded-md h-9 flex items-end overflow-hidden ${styles.trackBg}`}
                   >
                     <div
                       className={`w-full rounded-md transition-all duration-500 ${barColor}`}
                       style={{ height: `${heightPct}%` }}
                     />
                   </div>
-                  <span className={`text-[9px] font-semibold ${styles.chartHeader}`}>
+                  <span className={`text-[9px] font-semibold truncate w-full text-center ${styles.chartHeader}`}>
                     {bar.label}
                   </span>
                 </div>
