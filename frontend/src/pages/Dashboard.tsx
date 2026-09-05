@@ -114,13 +114,14 @@ export default function Dashboard() {
       {/* 1. TOP ROW: 4 Elevated Warehouse StatCards Straddling the Canopy */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 -mt-12 sm:-mt-14 relative z-20">
         <StatCard
-          title="Handled Items"
-          value={summary?.totalEvents || 428}
-          subtitle="Monitored across 6 active bays"
-          badge="30D Total"
+          title="Handled Items (30d)"
+          value={summary?.totalEvents || 177}
+          subtitle="Monitored across 6 active dock bays"
+          badge="Throughput"
           badgeType="info"
+          chartHeader="Monthly Vol"
           variant="blue"
-          trend={{ value: 14, isPositive: true, label: 'vs last month' }}
+          trend={{ value: 14, isPositive: true, label: 'vs previous 30 days' }}
           miniBars={[
             { label: 'May', value: 310, color: 'bg-blue-500' },
             { label: 'Jun', value: 375, color: 'bg-blue-600' },
@@ -129,12 +130,13 @@ export default function Dashboard() {
         />
         <StatCard
           title="Critical Flags"
-          value={summary?.critical || 8}
-          subtitle="Supervisor sign-off needed"
-          badge="8 Open"
+          value={summary?.critical || 22}
+          subtitle="Requires shift supervisor sign-off"
+          badge="8 Open Flags"
           badgeType="danger"
+          chartHeader="Weekly Trend"
           variant="rose"
-          trend={{ value: 25, isPositive: false, label: 'drop reduction' }}
+          trend={{ value: 25, isPositive: false, label: 'drops reduced vs last week' }}
           miniBars={[
             { label: 'W1', value: 14, color: 'bg-rose-400' },
             { label: 'W2', value: 11, color: 'bg-rose-500' },
@@ -142,13 +144,14 @@ export default function Dashboard() {
           ]}
         />
         <StatCard
-          title="Dock Cameras"
-          value={`${summary?.activeCameras || 6}/6`}
-          subtitle="Bays 1 through 6 live"
+          title="Active Dock Bays"
+          value={`${summary?.activeCameras || 6}/6 Live`}
+          subtitle="Loading Bays 1 through 6 streaming"
           badge="All Online"
           badgeType="success"
+          chartHeader="Uptime 100%"
           variant="emerald"
-          trend={{ value: 99.8, isPositive: true, label: 'uptime' }}
+          trend={{ value: 100, isPositive: true, label: 'all streams online' }}
           miniBars={[
             { label: 'B1-2', value: 92, color: 'bg-emerald-400' },
             { label: 'B3-4', value: 98, color: 'bg-emerald-500' },
@@ -156,17 +159,18 @@ export default function Dashboard() {
           ]}
         />
         <StatCard
-          title="Safe Placement"
+          title="Safe Handling Rate"
           value={`${summary?.preventionRate || 95.8}%`}
-          subtitle="Damage-free cargo handling"
-          badge="Optimal"
-          badgeType="warning"
+          subtitle="Handled without impact or drop"
+          badge="+3.2%"
+          badgeType="success"
+          chartHeader="By Shift"
           variant="amber"
-          trend={{ value: 3.2, isPositive: true, label: 'shift gain' }}
+          trend={{ value: 3.2, isPositive: true, label: 'shift improvement' }}
           miniBars={[
-            { label: 'Morn', value: 94, color: 'bg-amber-400' },
-            { label: 'Aft', value: 92, color: 'bg-amber-500' },
-            { label: 'Eve', value: 96, color: 'bg-amber-600' },
+            { label: 'Morning', value: 94, color: 'bg-amber-400' },
+            { label: 'Afternoon', value: 92, color: 'bg-amber-500' },
+            { label: 'Night', value: 96, color: 'bg-amber-600' },
           ]}
         />
       </div>
